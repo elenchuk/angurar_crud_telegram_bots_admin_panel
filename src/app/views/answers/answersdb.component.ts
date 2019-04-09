@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CrudService } from '../../shared/crud.service';  // CRUD API service class
 import { Answers} from '../../shared/answers';
-// import { ToastrService } from 'ngx-toastr';      // Alert message using NGX toastr
 
 
 @Component({
@@ -19,7 +18,6 @@ export class AnswersdbComponent implements OnInit {
 
   constructor(
     public crudApi: CrudService, // Inject answer CRUD services in constructor.
-    // public toastr: ToastrService // Toastr service for alert message
     ) { }
 
 

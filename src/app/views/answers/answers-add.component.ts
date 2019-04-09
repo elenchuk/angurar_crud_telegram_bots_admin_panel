@@ -64,7 +64,7 @@ export class AnswersAddComponent implements OnInit {
   submitAnswerData() {
     this.crudApi.AddAnswer(this.answerForm.value); // Submit answer data using CRUD API
     // this.toastr.success(this.answerForm.controls['question'].value + ' - successfully added!'); // Show success message when data is successfully submited
-    this.toasterService.pop('success', 'Success', 'Answer' + this.answerForm.controls['question'].value + ' - successfully added!');
+    this.toasterService.pop('success', 'Success', 'Answer: ' + this.answerForm.controls['question'].value + ' - successfully added!');
     this.ResetForm();  // Reset form when clicked on reset button
   }
 

@@ -1,46 +1,65 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Edit Answer Details</h1>
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="btn-group">
-      <!-- goBack() methos to back to previous component -->
-      <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Go Back</button>
+<div class="card">
+  <div class="card-header">
+    <strong>Edit Answer</strong>
+    <div class="card-actions">
+      <a (click)="goBack()">
+        <i class="icon-arrow-left-circle"></i>
+      </a>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-lg-12">
-    <div class="pricing-header form-block mx-auto">
-      <!-- Answer's Edit Form -->
-      <form [formGroup]="editForm" (ngSubmit)="updateForm()" novalidate>
-        <div class="row">
-          <div class="col-lg-5 col-md-12 col-sm-12">
-            <div class="row">
-              <div class="col-md-12 mb-3">
-                <label>Answer category</label>
-                <input type="text" formControlName="answer_category" class="form-control" required>
+  <div class="card-body">
+    <!-- Answer form -->
+    <form [formGroup]="editForm" (ngSubmit)="updateForm()" novalidate>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="row">
+
+            <div class="col-md-12 mb-3">
+              <label class="col-form-label">Answer category</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" formControlName="answer_category" class="form-control" required>
+                </div>
                 <p *ngIf="answer_category.errors?.minlength" class="error"><sup>*</sup>Answer category shouldn't be less than 1 words</p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12 mb-3">
-                <label>Question</label>
-                <input type="text" formControlName="question" class="form-control" required>
-                <p *ngIf="question.errors?.minlength" class="error"><sup>*</sup>Question category shouldn't be less than 1 words</p>
-              </div>
-              <div class="col-md-12 mb-3">
-                <label>Answer</label>
-                <input type="text" formControlName="answer" class="form-control" required>
-                <p *ngIf="answer.errors?.minlength" class="error"><sup>*</sup>Answer category shouldn't be less than 1 words</p>
-              </div>
-            </div>
-            <div class="form-group text-right">
-              <button type="submit" class="btn btn-success btn-block" [disabled]="!editForm.valid">Update Answer</button>
-            </div>
-          </div>
-        </div>
-      </form><!-- Answer's Edit Form ends-->
 
-    </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label class="col-form-label">Question</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" formControlName="question" class="form-control" required>
+                </div>
+              </div>
+              <p *ngIf="question.errors?.minlength" class="error"><sup>*</sup>Question category shouldn't be less than 1 words</p>
+            </div>
+
+            <div class="col-md-12 mb-3">
+              <label class="col-form-label">Answer</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" formControlName="answer" class="form-control" required>
+                </div>
+              </div>
+              <!-- Showing errors using getter method -->
+              <p *ngIf="answer.touched && answer.invalid" class="error"><sup>*</sup>Please add answer</p>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary mr-1" [disabled]="!editForm.valid">Update Answer</button>
+          </div>
+
+        </div>
+      </div>
+    </form><!-- Answer form ends-->
   </div>
+
 </div>
+
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>

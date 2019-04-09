@@ -47,7 +47,7 @@
           <td>{{answer.question}}</td>
           <td>{{answer.answer}}</td>
           <td class="text-center action-block">
-            <i class="icon-pencil" routerLink="/edit-answer/{{answer.$key}}"></i></td>
+            <i class="icon-pencil" [routerLink]="[answer.$key]"></i></td>
           <td class="text-center action-block"><i class="icon-trash" (click)="deleteAnswer(answer)"></i></td>
         </tr>
         </tbody>

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AnswersdbComponent } from './answersdb.component';
 import {AnswersAddComponent} from './answers-add.component';
+import {EditAnswerComponent} from './edit-answer.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,14 @@ const routes: Routes = [
         path: 'answeradd',
         component: AnswersAddComponent,
         data: {
-          title: 'Answers Add'
+          title: 'Answer Add'
+        }
+      },
+      {
+        path: 'answerslist/:id',
+        component: EditAnswerComponent,
+        data: {
+          title: 'Answer Edit'
         }
       }
     ]
