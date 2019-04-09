@@ -3,6 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
+import { AnswersComponent } from './views/answers/answers.component';
+
 
 // Reactive Form Module
 import { ReactiveFormsModule } from '@angular/forms';

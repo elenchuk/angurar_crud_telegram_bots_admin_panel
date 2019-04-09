@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+// import components
+import { AnswersComponent } from './answers.component';
 import { AnswersdbComponent } from './answersdb.component';
 import { AnswersAddComponent } from './answers-add.component';
 import { EditAnswerComponent } from './edit-answer.component';
@@ -25,6 +27,7 @@ import { AnswersRoutingModule } from './answers-routing.module';
     ToasterModule.forRoot()
   ],
   declarations: [
+    AnswersComponent,
     AnswersdbComponent,
     AnswersAddComponent,
     EditAnswerComponent
