@@ -3,6 +3,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
+
+// Reactive Form Module
+import { ReactiveFormsModule } from '@angular/forms';
+
+// NGX Pagination
+import { NgxPaginationModule } from 'ngx-pagination';
+
+// Firebase Modules
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+
 import { AppComponent } from './app.component';
 
 // Import containers
@@ -59,12 +71,12 @@ const APP_DIRECTIVES = [
 ]
 
 // Import routing module
-import { AppRoutingModule } from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-//import { ChartsModule } from 'ng2-charts/ng2-charts';
+// import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
   imports: [
@@ -73,7 +85,11 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    //ChartsModule
+    AngularFireModule.initializeApp(environment.firebase), // Main Angular fire module
+    AngularFireDatabaseModule,  // Firebase database module
+    ReactiveFormsModule,        // Reactive forms module
+    NgxPaginationModule  // NGX pagination module
+    // ChartsModule
   ],
   declarations: [
     AppComponent,
