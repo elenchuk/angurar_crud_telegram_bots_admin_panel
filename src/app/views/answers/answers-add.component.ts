@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../../shared/crud.service';    // CRUD services API
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'; // Reactive form services
-// import { ToastrService } from 'ngx-toastr'; // Alert message using NGX toastr
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
+import {Categorys} from '../../shared/categorys';
 
 
 @Component({
@@ -15,6 +15,7 @@ export class AnswersAddComponent implements OnInit {
 
   public answerForm: FormGroup;  // Define FormGroup to answer's form
   private toasterService: ToasterService;
+  Category: Categorys[];
 
   public toasterconfig: ToasterConfig =
     new ToasterConfig({
@@ -32,11 +33,22 @@ export class AnswersAddComponent implements OnInit {
 
   ngOnInit() {
     this.crudApi.GetAnswersList();  // Call GetAnswersList() before main form is being called
-    this.studenForm();              // Call answer form when component is ready
+    this.answersForm();              // Call answer form when component is ready
+    let s = this.crudApi.GetCategorysList();
+    s.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
+      this.Category = [];
+      data.forEach(item => {
+        let a = item.payload.toJSON();
+        a['$key'] = item.key;
+        this.Category.push(a as Categorys);
+      })
+    })
   }
 
+
+
   // Reactive answer form
-  studenForm() {
+  answersForm() {
     this.answerForm = this.fb.group({
       answer_category: ['', [Validators.required, Validators.minLength(1)]],
       question: ['', [Validators.required, Validators.minLength(1)]],

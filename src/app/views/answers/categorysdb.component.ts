@@ -22,7 +22,7 @@ export class CategorysdbComponent implements OnInit {
 
 
   ngOnInit() {
-    this.dataState(); // Initialize answer's list, when component is ready
+    this.dataState(); // Initialize category's list, when component is ready
     let s = this.crudApi.GetCategorysList();
     s.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
       this.Category = [];
@@ -51,7 +51,7 @@ export class CategorysdbComponent implements OnInit {
   // Method to delete answer object
   deleteCategory(category) {
     if (window.confirm('Are sure you want to delete this category ?')) { // Asking from user before Deleting answer data.
-      this.crudApi.DeleteAnswer(category.$key) // Using Delete answer API to delete answer.
+      this.crudApi.DeleteCategory(category.$key) // Using Delete answer API to delete answer.
       // this.toastr.success(answer.firstName + ' successfully deleted!'); // Alert message will show up when answer successfully deleted.
     }
   }

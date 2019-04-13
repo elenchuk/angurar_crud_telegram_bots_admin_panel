@@ -14,9 +14,16 @@
             <label class="col-form-label">Answer category</label>
             <div class="controls">
               <div class="input-group">
-                <input type="text" formControlName="answer_category" class="form-control" required>
+                <!--<input type="text" formControlName="answer_category" class="form-control" required>-->
+
+                <select formControlName="answer_category" class="form-control no-radius">
+                  <option>--Select category</option>
+                  <option *ngFor="let category of Category">{{category.category_name}}</option>
+                </select>
+
+
               </div>
-                <p *ngIf="answer_category.errors?.minlength" class="error"><sup>*</sup>Answer category shouldn't be less than 1 words</p>
+                <!--<p *ngIf="answer_category.errors?.minlength" class="error"><sup>*</sup>Answer category shouldn't be less than 1 words</p>-->
             </div>
           </div>
 

@@ -4,6 +4,7 @@ import { CrudService } from '../../shared/crud.service';
 import { ActivatedRoute, Router } from '@angular/router'; // ActivatedRoue is used to get the current associated components information.
 import { Location } from '@angular/common';  // Location service is used to go back to previous component
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
+import {Categorys} from '../../shared/categorys';
 
 @Component({
   selector: 'app-edit-answer',
@@ -12,9 +13,9 @@ import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster/a
 })
 
 export class EditAnswerComponent implements OnInit {
-  editForm: FormGroup;  // Define FormGroup to answer's edit form
-
+  public editForm: FormGroup;  // Define FormGroup to answer's edit form
   private toasterService: ToasterService;
+  Category: Categorys[];
 
   public toasterconfig: ToasterConfig =
     new ToasterConfig({
@@ -36,6 +37,15 @@ export class EditAnswerComponent implements OnInit {
     const id = this.actRoute.snapshot.paramMap.get('id');  // Getting current component's id or information using ActivatedRoute service
     this.crudApi.GetAnswer(id).valueChanges().subscribe(data => {
       this.editForm.setValue(data)  // Using SetValue() method, It's a ReactiveForm's API to store intial value of reactive form
+    })
+    let s = this.crudApi.GetCategorysList();
+    s.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
+      this.Category = [];
+      data.forEach(item => {
+        let a = item.payload.toJSON();
+        a['$key'] = item.key;
+        this.Category.push(a as Categorys);
+      })
     })
   }
 
