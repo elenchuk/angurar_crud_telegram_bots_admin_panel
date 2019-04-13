@@ -19,8 +19,8 @@
     <!-- No data shows when their is no answer data available -->
     <div class="no-data text-center" *ngIf="noData">
       <p class="nodata-msg">No answers added yet!</p>
-      <a routerLink="/answers-add" class="btn btn-success">
-        <i class="fas fa-plus custom-fa-plus"></i>
+      <a [routerLink]="['/answers/answeradd']" class="btn btn-success">
+        <i class="icon-plus"></i>
         Add Answer
       </a>
     </div>

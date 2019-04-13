@@ -7,6 +7,9 @@ import { AnswersComponent } from './answers.component';
 import { AnswersdbComponent } from './answersdb.component';
 import { AnswersAddComponent } from './answers-add.component';
 import { EditAnswerComponent } from './edit-answer.component';
+import { CategorysdbComponent } from './categorysdb.component';
+import { CategorysAddComponent } from './category-add.component';
+import { EditCategoryComponent } from './edit-category.component';
 
 // Reactive Form Module
 import { ReactiveFormsModule } from '@angular/forms';
@@ -30,7 +33,10 @@ import { AnswersRoutingModule } from './answers-routing.module';
     AnswersComponent,
     AnswersdbComponent,
     AnswersAddComponent,
-    EditAnswerComponent
+    EditAnswerComponent,
+    CategorysdbComponent,
+    CategorysAddComponent,
+    EditCategoryComponent
   ]
 })
 export class AnswersModule { }

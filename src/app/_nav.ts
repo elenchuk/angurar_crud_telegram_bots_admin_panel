@@ -26,6 +26,16 @@ export const navigation = [
         name: 'Answer add',
         url: '/answers/answeradd',
         icon: 'icon-puzzle'
+      },
+      {
+        name: 'Categorys list',
+        url: '/answers/categoryslist',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Category add',
+        url: '/answers/categoryadd',
+        icon: 'icon-puzzle'
       }
     ]
   },
