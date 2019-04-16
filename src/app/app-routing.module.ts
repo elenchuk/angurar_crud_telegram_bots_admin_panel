@@ -10,7 +10,7 @@ import {
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -27,6 +27,19 @@ export const routes: Routes = [
       {
         path: 'answers',
         loadChildren: './views/answers/answers.module#AnswersModule'
+      }
+    ]
+  },
+  {
+    path: '',
+    component: SimpleLayoutComponent,
+    data: {
+      title: 'Auth'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/auth/auth.module#AuthModule'
       }
     ]
   }

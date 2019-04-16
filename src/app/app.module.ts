@@ -3,8 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
-import { AnswersComponent } from './views/answers/answers.component';
-
 
 // Reactive Form Module
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +14,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppComponent } from './app.component';
 
@@ -78,7 +77,9 @@ import { AppRoutingModule } from './app-routing.module';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-// import { ChartsModule } from 'ng2-charts/ng2-charts';
+import {DashboardResolver} from './views/dashboard/dashboard.resolver';
+import {UserService} from './shared/user.service';
+import {AuthService} from './shared/auth.service';
 
 @NgModule({
   imports: [
@@ -90,19 +91,20 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     AngularFireModule.initializeApp(environment.firebase), // Main Angular fire module
     AngularFireDatabaseModule,  // Firebase database module
     ReactiveFormsModule,        // Reactive forms module
-    NgxPaginationModule  // NGX pagination module
+    NgxPaginationModule,  // NGX pagination module
+    AngularFireAuthModule
     // ChartsModule
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
-    ...APP_DIRECTIVES
+    ...APP_DIRECTIVES,
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  }, UserService, AuthService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -3,11 +3,13 @@ import { Routes,
      RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
+import { DashboardResolver } from './dashboard.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    resolve: { data: DashboardResolver},
     data: {
       title: 'Dashboard'
     }
