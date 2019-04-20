@@ -25,6 +25,10 @@ export const routes: Routes = [
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
       {
+        path: 'projects',
+        loadChildren: './views/projects/projects.module#ProjectsModule'
+      },
+      {
         path: 'answers',
         loadChildren: './views/answers/answers.module#AnswersModule'
       }

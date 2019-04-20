@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from '../../shared/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
@@ -7,7 +7,7 @@ import {Location} from '@angular/common';
   selector: 'app-header',
   templateUrl: './app-header.component.html'
 })
-export class AppHeaderComponent implements OnInit {
+export class AppHeaderComponent {
 
   constructor(
     public authService: AuthService,
@@ -15,9 +15,6 @@ export class AppHeaderComponent implements OnInit {
     private location: Location,
     private router: Router
   ) {}
-  ngOnInit(): void {
-    console.log(this.authService.uid)
-  }
 
   logout() {
     this.authService.doLogout()

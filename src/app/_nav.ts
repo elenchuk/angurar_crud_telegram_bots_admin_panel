@@ -9,8 +9,32 @@ export const navigation = [
     }
   },
   {
+    divider: true
+  },
+  {
     title: true,
-    name: 'UI elements'
+    name: 'All projects',
+  },
+  {
+    name: 'Projects',
+    url: '/projects',
+    icon: 'icon-star',
+    children: [
+      {
+        name: 'Projects list',
+        url: '/projects/projectslist',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Project add',
+        url: '/projects/projectadd',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
+    title: true,
+    name: 'Answers module'
   },
   {
     name: 'Answers DB',
