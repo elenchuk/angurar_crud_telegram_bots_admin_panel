@@ -13,24 +13,12 @@ export const navigation = [
   },
   {
     title: true,
-    name: 'All projects',
+    name: 'All projects'
   },
   {
     name: 'Projects',
     url: '/projects',
-    icon: 'icon-star',
-    children: [
-      {
-        name: 'Projects list',
-        url: '/projects/projectslist',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Project add',
-        url: '/projects/projectadd',
-        icon: 'icon-puzzle'
-      }
-    ]
+    icon: 'icon-star'
   },
   {
     title: true,

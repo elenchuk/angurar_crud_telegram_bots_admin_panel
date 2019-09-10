@@ -44,12 +44,12 @@ export class CrudService {
 
   // Fetch Single Answer Object
   GetAnswer(id: string) {
-    this.answerRef = this.db.object(this.authService.uid + '/aq_db/' + id);
+    this.answerRef = this.db.object(this.authService.uid + '/modules/aq/aq_db/' + id);
     return this.answerRef;
   }
   // Fetch Single Category Object
   GetCategory(id: string) {
-    this.categoryRef = this.db.object(this.authService.uid + '/aq_cat_db/' + id);
+    this.categoryRef = this.db.object(this.authService.uid + '/modules/aq/qaq_cat_db/' + id);
     return this.categoryRef;
   }
   // Fetch Single Project Object
@@ -60,12 +60,12 @@ export class CrudService {
 
   // Fetch Answers List
   GetAnswersList() {
-    this.answersRef = this.db.list(this.authService.uid + '/aq_db');
+    this.answersRef = this.db.list(this.authService.uid + '/modules/aq/aq_db');
     return this.answersRef;
   }
   // Fetch Categorys List
   GetCategorysList() {
-    this.categorysRef = this.db.list(this.authService.uid + '/aq_cat_db');
+    this.categorysRef = this.db.list(this.authService.uid + '/modules/aq/aq_cat_db');
     return this.categorysRef;
   }
   // Fetch Projects List
@@ -98,12 +98,12 @@ export class CrudService {
   }
   // Delete Answer Object
   DeleteAnswer(id: string) {
-    this.answerRef = this.db.object(this.authService.uid + '/aq_db/' + id);
+    this.answerRef = this.db.object(this.authService.uid + '/modules/aq/aq_db/' + id);
     this.answerRef.remove();
   }
   // Delete Category Object
   DeleteCategory(id: string) {
-    this.categoryRef = this.db.object(this.authService.uid + '/aq_cat_db/' + id);
+    this.categoryRef = this.db.object(this.authService.uid + '/modules/aq/aq_cat_db/' + id);
     this.categoryRef.remove();
   }
   // Delete Project Object

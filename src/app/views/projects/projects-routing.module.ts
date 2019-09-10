@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
-import { ProjectsdbComponent} from './projectsdb.component';
-import { ProjectsAddComponent } from './projects-add.component';
-import { EditProjectComponent} from './edit-project.component';
+import {ProjectsAddComponent} from './projects-add';
+import {EditProjectComponent} from './edit-project';
+import {ProjectsComponent} from './projects.component';
 
 const routes: Routes = [
   {
@@ -13,21 +13,21 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'projectslist',
-        component: ProjectsdbComponent,
+        path: '',
+        component: ProjectsComponent,
         data: {
-          title: 'Projects List'
+          title: ''
         }
       },
       {
-        path: 'projectadd',
+        path: 'add',
         component: ProjectsAddComponent,
         data: {
           title: 'Project Add'
         }
       },
       {
-        path: 'projectslist/:id',
+        path: ':id',
         component: EditProjectComponent,
         data: {
           title: 'Project Edit'
@@ -41,4 +41,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ProjectsRoutingModule {}
+export class ProjectsRoutingModule {
+}
