@@ -35,13 +35,6 @@ export class LoginComponent {
       })
   }
 
-  tryTwitterLogin() {
-    this.authService.doTwitterLogin()
-      .then(res => {
-        this.router.navigate(['/dashboard']);
-      })
-  }
-
   tryGoogleLogin() {
     this.authService.doGoogleLogin()
       .then(res => {

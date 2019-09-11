@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Answers } from './answers';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { Categorys } from './categorys';  // Firebase modules for Database, Data list and Single object
-import { Projects } from './projects';  // Firebase modules for Database, Data list and Single object
-import { AuthService } from './auth.service';
+import {Injectable} from '@angular/core';
+import {Answers} from './answers';
+import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
+import {Categorys} from './categorys';  // Firebase modules for Database, Data list and Single object
+import {Projects} from './projects';  // Firebase modules for Database, Data list and Single object
+import {CrudConstants} from './crud.constants';
+import {StorageService} from '../core/storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class CrudService {
   projectsRef: AngularFireList<any>;    // Reference to Answer data list, its an Observable
   projectRef: AngularFireObject<any>;   // Reference to Answer object, its an Observable too
   // Inject AngularFireDatabase Dependency in Constructor
-  constructor(private db: AngularFireDatabase, public authService: AuthService) { }
+  constructor(private db: AngularFireDatabase) {
+  }
 
   // Create Answer
   AddAnswer(answer: Answers) {
@@ -27,12 +29,14 @@ export class CrudService {
       answer: answer.answer
     });
   }
+
   // Create Category
   AddCategory(category: Categorys) {
     this.categorysRef.push({
       category_name: category.category_name
     });
   }
+
   // Create Project
   AddProject(project: Projects) {
     this.projectsRef.push({
@@ -44,35 +48,40 @@ export class CrudService {
 
   // Fetch Single Answer Object
   GetAnswer(id: string) {
-    this.answerRef = this.db.object(this.authService.uid + '/modules/aq/aq_db/' + id);
+    this.answerRef = this.db.object(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.MODULES}/aq/aq_db/${id}`);
     return this.answerRef;
   }
+
   // Fetch Single Category Object
   GetCategory(id: string) {
-    this.categoryRef = this.db.object(this.authService.uid + '/modules/aq/qaq_cat_db/' + id);
+    this.categoryRef = this.db.object(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.MODULES}/aq/qaq_cat_db/${id}`);
     return this.categoryRef;
   }
+
   // Fetch Single Project Object
   GetProject(id: string) {
-    this.projectRef = this.db.object(this.authService.uid + '/projects/' + id);
+    this.projectRef = this.db.object(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.PROJECTS}/${id}`);
     return this.projectRef;
   }
 
   // Fetch Answers List
   GetAnswersList() {
-    this.answersRef = this.db.list(this.authService.uid + '/modules/aq/aq_db');
+    this.answersRef = this.db.list(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.MODULES}/aq/aq_db`);
     return this.answersRef;
   }
+
   // Fetch Categorys List
   GetCategorysList() {
-    this.categorysRef = this.db.list(this.authService.uid + '/modules/aq/aq_cat_db');
+    this.categorysRef = this.db.list(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.MODULES}/aq/qaq_cat_db`);
     return this.categorysRef;
   }
+
   // Fetch Projects List
   GetProjectsList() {
-    this.projectsRef = this.db.list(this.authService.uid + '/projects');
+    this.projectsRef = this.db.list(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.PROJECTS}`);
     return this.projectsRef;
   }
+
   // Update Answer Object
   UpdateAnswer(answer: Answers) {
     this.answerRef.update({
@@ -81,12 +90,14 @@ export class CrudService {
       answer: answer.answer
     });
   }
+
   // Update Category Object
   UpdateCategory(category: Categorys) {
     this.categoryRef.update({
       category_name: category.category_name
     });
   }
+
   // Update Project Object
   UpdateProject(project: Projects) {
     this.projectRef.update({
@@ -96,19 +107,22 @@ export class CrudService {
 
     });
   }
+
   // Delete Answer Object
   DeleteAnswer(id: string) {
-    this.answerRef = this.db.object(this.authService.uid + '/modules/aq/aq_db/' + id);
+    this.answerRef = this.db.object(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.MODULES}/aq/aq_db/${id}`);
     this.answerRef.remove();
   }
+
   // Delete Category Object
   DeleteCategory(id: string) {
-    this.categoryRef = this.db.object(this.authService.uid + '/modules/aq/aq_cat_db/' + id);
+    this.categoryRef = this.db.object(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.MODULES}/aq/qaq_cat_db/${id}`);
     this.categoryRef.remove();
   }
+
   // Delete Project Object
   DeleteProject(id: string) {
-    this.projectRef = this.db.object(this.authService.uid + '/projects/' + id);
+    this.projectRef = this.db.object(`${CrudConstants.CLIENT_SIDE}/${StorageService.get(CrudConstants.ID)}/${CrudConstants.PROJECTS}/${id}`);
     this.projectRef.remove();
   }
 }

@@ -1,22 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 
 // Reactive Form Module
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 // NGX Pagination
-import { NgxPaginationModule } from 'ngx-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 // Firebase Modules
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { environment } from '../environments/environment';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 
 // Import containers
 import {
@@ -72,14 +72,16 @@ const APP_DIRECTIVES = [
 ]
 
 // Import routing module
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 
 // Import 3rd party components
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {TabsModule} from 'ngx-bootstrap/tabs';
 import {DashboardResolver} from './views/dashboard/dashboard.resolver';
 import {UserService} from './shared/user.service';
 import {AuthService} from './shared/auth.service';
+import {StorageService} from './core/storage/storage.service';
+import {CommonService} from './core/common';
 
 @NgModule({
   imports: [
@@ -104,7 +106,12 @@ import {AuthService} from './shared/auth.service';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }, UserService, AuthService],
-  bootstrap: [ AppComponent ]
+  },
+    UserService,
+    AuthService,
+    StorageService,
+    CommonService],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

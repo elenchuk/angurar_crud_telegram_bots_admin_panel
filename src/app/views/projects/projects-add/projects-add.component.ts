@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../../../shared/crud.service';    // CRUD services API
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'; // Reactive form services
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,6 @@ export class ProjectsAddComponent implements OnInit {
   public project_status = true;
 
   public projectForm: FormGroup;  // Define FormGroup to answer's form
-  private toasterService: ToasterService;
 
   public toasterconfig: ToasterConfig =
     new ToasterConfig({
@@ -25,9 +25,10 @@ export class ProjectsAddComponent implements OnInit {
   constructor(
     public crudApi: CrudService,  // CRUD API services
     public fb: FormBuilder,       // Form Builder service for Reactive forms
-    toasterService: ToasterService,
+    private toasterService: ToasterService,
+    private router: Router
     // public toastr: ToastrService  // Toastr service for alert message
-  ) { this.toasterService = toasterService; }
+  ) { }
 
 
   ngOnInit() {
@@ -35,7 +36,10 @@ export class ProjectsAddComponent implements OnInit {
     this.projectsForm();              // Call answer form when component is ready
   }
 
-
+  // Go back to previous component
+  goBack() {
+    this.router.navigate(['/projects']);
+  }
 
   // Reactive answer form
   projectsForm() {
@@ -62,7 +66,10 @@ export class ProjectsAddComponent implements OnInit {
     this.crudApi.AddProject(this.projectForm.value); // Submit answer data using CRUD API
     // this.toastr.success(this.answerForm.controls['question'].value + ' - successfully added!'); // Show success message when data is successfully submited
     this.toasterService.pop('success', 'Success', 'Project: ' + this.projectForm.controls['project_name'].value + ' - successfully added!');
-    this.ResetForm();  // Reset form when clicked on reset button
+    setTimeout(() => {
+      this.router.navigate(['/projects']);
+      this.ResetForm();  // Reset form when clicked on reset button
+    }, 1500);
   }
 
 }

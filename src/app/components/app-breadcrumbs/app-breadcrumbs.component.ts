@@ -29,12 +29,10 @@ export class AppBreadcrumbsComponent {
         currentRoute = null;
         // tslint:disable-next-line:no-shadowed-variable
         childrenRoutes.forEach(route => {
-          console.log(route.snapshot.data);
           if (route.outlet === 'primary') {
             const routeSnapshot = route.snapshot;
             url += '/' + routeSnapshot.url.map(segment => segment.path).join('/');
             if (String(route.snapshot.data.title) !== '') {
-              console.log('>>', route.snapshot.data);
               this.breadcrumbs.push({
                 label: route.snapshot.data,
                 url:   url

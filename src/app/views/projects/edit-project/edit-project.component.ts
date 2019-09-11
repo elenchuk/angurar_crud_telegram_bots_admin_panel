@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from '../../../shared/crud.service';
 import { ActivatedRoute, Router } from '@angular/router'; // ActivatedRoue is used to get the current associated components information.
-import { Location } from '@angular/common';  // Location service is used to go back to previous component
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
 
 @Component({
@@ -13,7 +12,6 @@ import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster/a
 
 export class EditProjectComponent implements OnInit {
   public editForm: FormGroup;  // Define FormGroup to answer's edit form
-  private toasterService: ToasterService;
 
   public toasterconfig: ToasterConfig =
     new ToasterConfig({
@@ -23,12 +21,11 @@ export class EditProjectComponent implements OnInit {
   constructor(
     private crudApi: CrudService,       // Inject CRUD API in constructor
     private fb: FormBuilder,            // Inject Form Builder service for Reactive forms
-    private location: Location,         // Location service to go back to previous component
     private actRoute: ActivatedRoute,   // Activated route to get the current component's inforamation
     private router: Router,             // Router service to navigate to specific component
-    toasterService: ToasterService,
+    private toasterService: ToasterService,
     // private toastr: ToastrService       // Toastr service for alert message
-  ) { this.toasterService = toasterService; }
+  ) {}
 
   ngOnInit() {
     this.updateProjectData();   // Call updateAnswerData() as soon as the component is ready
@@ -58,7 +55,7 @@ export class EditProjectComponent implements OnInit {
 
   // Go back to previous component
   goBack() {
-    this.location.back();
+    this.router.navigate(['/projects']);
   }
 
   // Below methods fire when somebody click on submit button
@@ -66,8 +63,8 @@ export class EditProjectComponent implements OnInit {
     this.crudApi.UpdateProject(this.editForm.value);       // Update answer data using CRUD API
     this.toasterService.pop('success', 'Success', 'Project: ' + this.editForm.controls['project_name'].value + ' - successfully edited!');   // Show succes message when data is successfully submited
     setTimeout(() => {
-      this.location.back()
-    }, 1500);               // Navigate to project's list page when answer data is updated
+      this.router.navigate(['/projects']);
+    }, 1500);
   }
 
 }
