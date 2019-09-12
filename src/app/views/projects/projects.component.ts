@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../../shared/crud.service';  // CRUD API service class
 import { Projects } from '../../shared/projects';
+import {Router} from '@angular/router';
 
 
 
@@ -18,6 +19,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     public crudApi: CrudService, // Inject answer CRUD services in constructor.
+    private router: Router
   ) { }
 
 
@@ -61,7 +63,9 @@ export class ProjectsComponent implements OnInit {
   // Method to delete answer object
   deleteProject(project) {
     if (window.confirm('Are sure you want to delete this project ?')) { // Asking from user before Deleting project data.
+      console.log('DEL');
       this.crudApi.DeleteProject(project.$key) // Using Delete project API to delete project.
+      this.router.navigate(['/projects']);
       // this.toastr.success(answer.firstName + ' successfully deleted!'); // Alert message will show up when answer successfully deleted.
     }
   }

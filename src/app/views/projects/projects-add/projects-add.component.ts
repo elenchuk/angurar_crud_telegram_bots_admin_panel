@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 
 export class ProjectsAddComponent implements OnInit {
   public project_status = true;
+  public project_type = 'channel';
 
   public projectForm: FormGroup;  // Define FormGroup to answer's form
 
@@ -45,15 +46,21 @@ export class ProjectsAddComponent implements OnInit {
   projectsForm() {
     this.projectForm = this.fb.group({
       project_status: [''],
+      project_type: [''],
+      project_type_link: ['', [Validators.required, Validators.minLength(1)]],
       project_name: ['', [Validators.required, Validators.minLength(1)]],
       telegram_token: ['', [Validators.required, Validators.minLength(45), Validators.maxLength(45)]]
     });
   }
-  get project_name() {
+  project_name() {
     return this.projectForm.get('project_name');
   }
 
-  get telegram_token() {
+  project_type_link() {
+    return this.projectForm.get('project_type_link');
+  }
+
+  telegram_token() {
     return this.projectForm.get('telegram_token');
   }
 

@@ -42,6 +42,8 @@ export class CrudService {
     this.projectsRef.push({
       project_status: project.project_status,
       project_name: project.project_name,
+      project_type: project.project_type,
+      project_type_link: project.project_type_link,
       telegram_token: project.telegram_token
     });
   }
@@ -103,6 +105,8 @@ export class CrudService {
     this.projectRef.update({
       project_status: project.project_status,
       project_name: project.project_name,
+      project_type: project.project_type,
+      project_type_link: project.project_type_link,
       telegram_token: project.telegram_token
 
     });
