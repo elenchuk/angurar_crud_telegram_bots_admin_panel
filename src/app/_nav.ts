@@ -22,34 +22,12 @@ export const navigation = [
   },
   {
     title: true,
-    name: 'Answers module'
+    name: 'Modules'
   },
   {
-    name: 'Answers DB',
-    url: '/answers',
-    icon: 'icon-puzzle',
-    children: [
-      {
-        name: 'Answers list',
-        url: '/answers/answerslist',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Answer add',
-        url: '/answers/answeradd',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Categorys list',
-        url: '/answers/categoryslist',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Category add',
-        url: '/answers/categoryadd',
-        icon: 'icon-puzzle'
-      }
-    ]
+    name: 'Modules',
+    url: '/modules',
+    icon: 'icon-puzzle'
   },
   {
     divider: true

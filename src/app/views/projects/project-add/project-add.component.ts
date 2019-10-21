@@ -7,11 +7,11 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-projects-add',
-  templateUrl: './projects-add.component.html',
-  styleUrls: ['./projects-add.component.css']
+  templateUrl: './project-add.component.html',
+  styleUrls: ['./project-add.component.css']
 })
 
-export class ProjectsAddComponent implements OnInit {
+export class ProjectAddComponent implements OnInit {
   public project_status = true;
   public project_type = 'channel';
 

@@ -4,9 +4,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 // import components
-import { ProjectsComponent} from './projects.component';
-import { ProjectAddComponent } from './project-add';
-import { EditProjectComponent } from './edit-project';
+import { ModulesComponent} from './modules.component';
+import {ModuleAddComponent} from './module-add/module-add.component';
+import {EditModuleComponent} from './edit-module';
+
 
 // Reactive Form Module
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,11 +17,11 @@ import { ToasterModule, ToasterService} from 'angular2-toaster/angular2-toaster'
 
 
 // Components Routing
-import { ProjectsRoutingModule} from './projects-routing.module';
+import { ModulesRoutingModule} from './modules-routing.module';
 
 @NgModule({
   imports: [
-    ProjectsRoutingModule,
+    ModulesRoutingModule,
     [CommonModule],
     NgxPaginationModule,  // NGX pagination module
     ReactiveFormsModule,        // Reactive forms module
@@ -28,9 +29,9 @@ import { ProjectsRoutingModule} from './projects-routing.module';
     BsDropdownModule
   ],
   declarations: [
-    ProjectsComponent,
-    ProjectAddComponent,
-    EditProjectComponent
+    ModulesComponent,
+    ModuleAddComponent,
+    EditModuleComponent
   ]
 })
-export class ProjectsModule { }
+export class ModulesModule { }
