@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {EditModuleComponent} from './edit-module';
 import {ModulesComponent} from './modules.component';
-import {ModuleAddComponent} from './module-add/module-add.component';
+import {ModuleAddComponent} from './module-add';
 
 const routes: Routes = [
   {

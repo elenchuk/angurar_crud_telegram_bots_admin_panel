@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 // import components
 import { ModulesComponent} from './modules.component';
@@ -26,6 +27,7 @@ import { ModulesRoutingModule} from './modules-routing.module';
     NgxPaginationModule,  // NGX pagination module
     ReactiveFormsModule,        // Reactive forms module
     ToasterModule.forRoot(),
+    ModalModule.forRoot(),
     BsDropdownModule
   ],
   declarations: [

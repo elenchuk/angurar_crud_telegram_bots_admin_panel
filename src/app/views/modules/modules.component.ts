@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../../shared/crud.service';  // CRUD API service class
-import { Projects } from '../../shared/projects';
+import { NewModules } from '../../shared/new-modules'
+import { ProjectsModules } from '../../shared/projects-modules';
 import {Router} from '@angular/router';
 
 
@@ -12,7 +13,8 @@ import {Router} from '@angular/router';
 
 export class ModulesComponent implements OnInit {
   p = 1;                      // Fix for AOT compilation error for NGX pagination
-  Project: Projects[];                 // Save projects data in Project's array.
+  ProjectModule: ProjectsModules[];                 // Save projects data in Project's array.
+  Module: NewModules[];
   hideWhenNoProject = false; // Hide projects data table when no project.
   noData = false;            // Showing No Project Message, when no projects in database.
   preLoader = true;          // Showing Preloader to show user data is coming for you from thre server(A tiny UX Shit)
@@ -24,14 +26,25 @@ export class ModulesComponent implements OnInit {
 
 
   ngOnInit() {
-    this.dataState(); // Initialize project's list, when component is ready
-    let s = this.crudApi.GetProjectsList();
+    this.dataState(); // Initialize project's module's list, when component is ready
+    let s = this.crudApi.GetProjectsModulesList();
+    let ss = this.crudApi.GetModulesList();
     s.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
-      this.Project = [];
+      this.ProjectModule = [];
       data.forEach(item => {
         let a = item.payload.toJSON();
         a['$key'] = item.key;
-        this.Project.push(a as Projects);
+        console.log(a);
+        this.ProjectModule.push(a as ProjectsModules);
+      })
+    })
+    ss.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
+      this.Module = [];
+      data.forEach(item => {
+        let b = item.payload.toJSON();
+        console.log(b);
+        b['$key'] = item.key;
+        this.Module.push(b as NewModules);
       })
     })
   }
@@ -48,7 +61,17 @@ export class ModulesComponent implements OnInit {
 
   // Using valueChanges() method to fetch simple list of answers data. It updates the state of hideWhenNoAnswer, noData & preLoader variables when any changes occurs in answer data list in real-time.
   dataState() {
-    this.crudApi.GetProjectsList().valueChanges().subscribe(data => {
+    this.crudApi.GetProjectsModulesList().valueChanges().subscribe(data => {
+      this.preLoader = false;
+      if (data.length <= 0) {
+        this.hideWhenNoProject = false;
+        this.noData = true;
+      } else {
+        this.hideWhenNoProject = true;
+        this.noData = false;
+      }
+    })
+    this.crudApi.GetModulesList().valueChanges().subscribe(data => {
       this.preLoader = false;
       if (data.length <= 0) {
         this.hideWhenNoProject = false;
@@ -62,7 +85,7 @@ export class ModulesComponent implements OnInit {
 
   // Method to delete answer object
   deleteProject(project) {
-    if (window.confirm('Are sure you want to delete this project ?')) { // Asking from user before Deleting project data.
+    if (window.confirm('Are sure you want to delete this project module ?')) { // Asking from user before Deleting project data.
       console.log('DEL');
       this.crudApi.DeleteProject(project.$key) // Using Delete project API to delete project.
       this.router.navigate(['/projects']);
