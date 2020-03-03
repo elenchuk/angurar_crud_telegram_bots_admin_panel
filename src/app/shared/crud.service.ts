@@ -48,10 +48,7 @@ export class CrudService {
       project_name: project.project_name,
       project_type: project.project_type,
       project_type_link: project.project_type_link,
-      telegram_token: project.telegram_token,
-      modules: {
-        user_count: 0
-      }
+      telegram_token: project.telegram_token
     });
   }
 

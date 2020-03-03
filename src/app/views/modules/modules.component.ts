@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { CrudService } from '../../shared/crud.service';  // CRUD API service class
 import { NewModules } from '../../shared/new-modules'
 import { ProjectsModules } from '../../shared/projects-modules';
 import {Router} from '@angular/router';
-
+import {fromEvent} from 'rxjs';
+import {endWith, scan, startWith} from 'rxjs/operators';
 
 
 @Component({
@@ -12,6 +13,9 @@ import {Router} from '@angular/router';
 })
 
 export class ModulesComponent implements OnInit {
+  @ViewChild('btn') btn: ElementRef;
+  count: any;
+
   p = 1;                      // Fix for AOT compilation error for NGX pagination
   ProjectModule: ProjectsModules[];                 // Save projects data in Project's array.
   Module: NewModules[];
@@ -26,6 +30,9 @@ export class ModulesComponent implements OnInit {
 
 
   ngOnInit() {
+    fromEvent(document, 'click')
+      .subscribe((result: MouseEvent) => this.count = result.clientX);
+
     this.dataState(); // Initialize project's module's list, when component is ready
     let s = this.crudApi.GetProjectsModulesList();
     let ss = this.crudApi.GetModulesList();
@@ -34,7 +41,6 @@ export class ModulesComponent implements OnInit {
       data.forEach(item => {
         let a = item.payload.toJSON();
         a['$key'] = item.key;
-        console.log(a);
         this.ProjectModule.push(a as ProjectsModules);
       })
     })
@@ -42,7 +48,6 @@ export class ModulesComponent implements OnInit {
       this.Module = [];
       data.forEach(item => {
         let b = item.payload.toJSON();
-        console.log(b);
         b['$key'] = item.key;
         this.Module.push(b as NewModules);
       })
